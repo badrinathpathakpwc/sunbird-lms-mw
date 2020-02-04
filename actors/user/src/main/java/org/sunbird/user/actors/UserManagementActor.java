@@ -628,10 +628,17 @@ public class UserManagementActor extends BaseActor {
     if (null != resp) {
       saveUserDetailsToEs(esResponse);
     }
+    String password = (String) userMap.get(JsonKey.PASSWORD);
     requestMap.put(JsonKey.PASSWORD, userMap.get(JsonKey.PASSWORD));
-    if (StringUtils.isNotBlank(callerId)) {
+    
+    //send email if there is caller id or there is no password provided in the request
+    //ABLE product feature only
+    ProjectLogger.log("*****Outside Send Email***********","INFO");
+    if (StringUtils.isNotBlank(callerId) || StringUtils.isBlank(password)) {
+    	ProjectLogger.log("*****Inside Send Email***********","INFO");
       sendEmailAndSms(requestMap);
     }
+   
     Map<String, Object> targetObject = null;
     List<Map<String, Object>> correlatedObject = new ArrayList<>();
     Map<String, String> rollUp = new HashMap<>();
