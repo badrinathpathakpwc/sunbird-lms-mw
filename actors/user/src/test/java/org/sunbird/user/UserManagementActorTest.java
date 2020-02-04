@@ -44,6 +44,17 @@ public class UserManagementActorTest extends UserManagementActorTestBase {
             null);
     assertTrue(result);
   }
+  
+  @Test
+  public void testCreateUserSuccessWithoutUserPassword() {
+
+    boolean result =
+        testScenario(
+            getRequest(
+                false, true, true, getAdditionalMapData(reqMap), ActorOperations.CREATE_USER),
+            null);
+    assertTrue(result);
+  }
 
   @Test
   public void testCreateUserSuccessWithoutUserCallerIdChannelAndRootOrgId() {
