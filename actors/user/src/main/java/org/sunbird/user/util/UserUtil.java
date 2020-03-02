@@ -182,7 +182,7 @@ public class UserUtil {
           ProjectLogger.log("Exception occurred while encrypting Email ", e);
         }
         Map<String, Object> filters = new HashMap<>();
-        filters.put(JsonKey.EMAIL, email);
+        filters.put(JsonKey.ENC_EMAIL, email);
         Map<String, Object> map = new HashMap<>();
         map.put(JsonKey.FILTERS, filters);
         SearchDTO searchDto = Util.createSearchDto(map);
