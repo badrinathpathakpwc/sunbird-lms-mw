@@ -172,8 +172,11 @@ public class UserUtil {
     // Get Email configuration if not found , by default Email can be duplicate
     // across the
     // application
+    ProjectLogger.log("***********************Inside Email Check*******************************",opType);
     String emailSetting = DataCacheHandler.getConfigSettings().get(JsonKey.EMAIL_UNIQUE);
+    ProjectLogger.log("***********************emailSetting*******************************",emailSetting);
     if (StringUtils.isNotBlank(emailSetting) && Boolean.parseBoolean(emailSetting)) {
+      ProjectLogger.log("***********************inside If*******************************",opType);
       String email = user.getEmail();
       if (StringUtils.isNotBlank(email)) {
         try {
@@ -181,8 +184,9 @@ public class UserUtil {
         } catch (Exception e) {
           ProjectLogger.log("Exception occurred while encrypting Email ", e);
         }
+        ProjectLogger.log("***********************masked email*******************************",email);
         Map<String, Object> filters = new HashMap<>();
-        filters.put(JsonKey.ENC_EMAIL, email);
+        filters.put(JsonKey.EMAIL, email);
         Map<String, Object> map = new HashMap<>();
         map.put(JsonKey.FILTERS, filters);
         SearchDTO searchDto = Util.createSearchDto(map);
@@ -193,6 +197,7 @@ public class UserUtil {
         List<Map<String, Object>> userMapList =
             (List<Map<String, Object>>) result.get(JsonKey.CONTENT);
         if (!userMapList.isEmpty()) {
+          ProjectLogger.log("***********************userMapList is not empty*******************************",opType);
           if (opType.equalsIgnoreCase(JsonKey.CREATE)) {
             ProjectCommonException.throwClientErrorException(ResponseCode.emailInUse, null);
           } else {
