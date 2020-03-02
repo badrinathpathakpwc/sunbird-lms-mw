@@ -172,11 +172,11 @@ public class UserUtil {
     // Get Email configuration if not found , by default Email can be duplicate
     // across the
     // application
-    ProjectLogger.log("***********************Inside Email Check*******************************",opType);
+    ProjectLogger.log("***********************Inside Email Check*******************************","INFO");
     String emailSetting = DataCacheHandler.getConfigSettings().get(JsonKey.EMAIL_UNIQUE);
-    ProjectLogger.log("***********************emailSetting*******************************",emailSetting);
+    ProjectLogger.log("***********************emailSetting*******************************"+emailSetting,"INFO");
     if (StringUtils.isNotBlank(emailSetting) && Boolean.parseBoolean(emailSetting)) {
-      ProjectLogger.log("***********************inside If*******************************",opType);
+      ProjectLogger.log("***********************inside If*******************************","INFO");
       String email = user.getEmail();
       if (StringUtils.isNotBlank(email)) {
         try {
@@ -184,7 +184,7 @@ public class UserUtil {
         } catch (Exception e) {
           ProjectLogger.log("Exception occurred while encrypting Email ", e);
         }
-        ProjectLogger.log("***********************masked email*******************************",email);
+        ProjectLogger.log("***********************masked email*******************************"+email,"INFO");
         Map<String, Object> filters = new HashMap<>();
         filters.put(JsonKey.EMAIL, email);
         Map<String, Object> map = new HashMap<>();
@@ -197,7 +197,7 @@ public class UserUtil {
         List<Map<String, Object>> userMapList =
             (List<Map<String, Object>>) result.get(JsonKey.CONTENT);
         if (!userMapList.isEmpty()) {
-          ProjectLogger.log("***********************userMapList is not empty*******************************",opType);
+          ProjectLogger.log("***********************userMapList is not empty*******************************","INFO");
           if (opType.equalsIgnoreCase(JsonKey.CREATE)) {
             ProjectCommonException.throwClientErrorException(ResponseCode.emailInUse, null);
           } else {
