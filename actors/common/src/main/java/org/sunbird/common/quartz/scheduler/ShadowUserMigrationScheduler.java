@@ -151,7 +151,7 @@ public class ShadowUserMigrationScheduler extends BaseJob{
         try {
             bulkMigrationUser = mapper.convertValue(row, BulkMigrationUser.class);
         } catch (Exception e) {
-            e.printStackTrace();
+          //  e.printStackTrace();
             ProjectLogger.log("ShadowUserMigrationScheduler:convertMapToMigrationObject:error occurred while converting map to pojo".concat(e.getMessage() + ""), LoggerEnum.ERROR.name());
         }
         return bulkMigrationUser;
