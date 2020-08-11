@@ -164,7 +164,7 @@ public class ShadowUserMigrationScheduler extends BaseJob{
             migrationUserList = mapper.readValue(decryptedData, new TypeReference<List<MigrationUser>>() {
             });
         } catch (Exception e) {
-            e.printStackTrace();
+          //  e.printStackTrace();
             ProjectLogger.log("ShadowUserMigrationScheduler:getMigrationUserAsList:error occurred while converting map to POJO: "+e, LoggerEnum.ERROR.name());
         }
         return migrationUserList;
