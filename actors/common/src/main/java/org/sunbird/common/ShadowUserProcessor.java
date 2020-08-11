@@ -405,7 +405,7 @@ public class ShadowUserProcessor {
                 ProjectLogger.log("ShadowUserMigrationScheduler:updateUserStatus: data successfully updated to elastic search with userId:".concat(userId + ""), LoggerEnum.INFO.name());
             }
         } catch (Exception e) {
-            e.printStackTrace();
+         //   e.printStackTrace();
             ProjectLogger.log("ShadowUserMigrationScheduler:syncUserToES: data failed to updates in elastic search with userId:".concat(userId + ""), LoggerEnum.ERROR.name());
         }
     }
